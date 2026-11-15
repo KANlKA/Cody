@@ -1,0 +1,4 @@
+torch, transformers, sentence-transformers (or FlagEmbedding for BGE-M3),
+faiss-cpu, numpy, pandas, pyarrow, huggingface_hub,
+fastapi, uvicorn, gradio, python-dotenv, pydantic,
+gnani-vachana>=0.8.1,<0.9, requests, pytest, ruff
