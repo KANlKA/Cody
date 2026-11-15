@@ -7,18 +7,18 @@ import csv
 from pathlib import Path
 from typing import Any
 
-from hh_goa_rag.generation.evaluation import (
+from cody_voice.generation.evaluation import (
     aggregate_configuration_rows,
     aggregate_model_rows,
     write_csv,
 )
-from hh_goa_rag.generation.review import (
+from cody_voice.generation.review import (
     add_human_quality,
     load_judgments,
     load_mapping,
     select_quality_winner,
 )
-from hh_goa_rag.io import read_jsonl
+from cody_voice.io import read_jsonl
 
 OUTPUTS = {
     "model": Path("results/generation_model_ablation.csv"),

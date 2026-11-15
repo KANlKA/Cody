@@ -11,19 +11,19 @@ from typing import Any
 import numpy as np
 import torch
 
-from hh_goa_rag.chunking import chunk_corpus
-from hh_goa_rag.cleanup import cleanup_losing_models
-from hh_goa_rag.config import stable_fingerprint
-from hh_goa_rag.embedding_ablation import resolve_data_dir
-from hh_goa_rag.index_backends import run_faiss
-from hh_goa_rag.io import read_jsonl, write_json, write_jsonl
-from hh_goa_rag.metrics import (
+from cody_voice.chunking import chunk_corpus
+from cody_voice.cleanup import cleanup_losing_models
+from cody_voice.config import stable_fingerprint
+from cody_voice.embedding_ablation import resolve_data_dir
+from cody_voice.index_backends import run_faiss
+from cody_voice.io import read_jsonl, write_json, write_jsonl
+from cody_voice.metrics import (
     evaluate_rankings,
     evaluate_rankings_by_language,
     qrels_by_query,
 )
-from hh_goa_rag.models import MODEL_SPECS, EmbeddingModel, acquire_model
-from hh_goa_rag.reporting import markdown_table
+from cody_voice.models import MODEL_SPECS, EmbeddingModel, acquire_model
+from cody_voice.reporting import markdown_table
 
 
 def _load_json(path: str | Path) -> dict[str, Any]:
@@ -174,7 +174,7 @@ def _recommendation(
         f"- `{item['repository']}` ({int(item['bytes']) / 2**30:.2f} GiB)"
         for item in cleanup["removed"]
     )
-    return f"""# HH Goa retrieval-stack recommendation
+    return f"""# Cody retrieval-stack recommendation
 
 ## Selected stack
 
@@ -234,14 +234,14 @@ FAISS algorithm quality, build cost, serialized size, and p50/p95/p100 retrieval
 - Final index artifact: `{final_result['index_artifact']}`
 - Chunk-to-parent artifact: `{final_result['chunk_artifact']}`
 
-`hh_goa_rag.retriever.ParentFaissRetriever` loads these two artifacts and accepts an already encoded
+`cody_voice.retriever.ParentFaissRetriever` loads these two artifacts and accepts an already encoded
 query vector, so it can be placed directly after the future STT/query-embedding boundary without
 adding generation, speech, or frontend code here.
 
 ## Project-local model cleanup
 
 The winning `{embedding_model}` directory was preserved. Only direct children of `{cleanup['root']}`
-carrying the exact `.hh_goa_model.json` ownership marker for this experiment were eligible for
+carrying the exact `.cody_model.json` ownership marker for this experiment were eligible for
 deletion. Removed:
 
 {removed}
@@ -360,7 +360,7 @@ def run_finalization(
         )
         write_json(cleanup_path, cleanup)
     retriever_config = {
-        "class": "hh_goa_rag.retriever.ParentFaissRetriever",
+        "class": "cody_voice.retriever.ParentFaissRetriever",
         "model": embedding_winner["winner"],
         "model_revision": embedding_winner["model_revision"],
         "model_cache_path": embedding_winner["metrics"]["model_cache_path"],

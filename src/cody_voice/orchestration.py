@@ -10,7 +10,7 @@ from __future__ import annotations
 from collections.abc import Callable
 from typing import Any, TypedDict
 
-from hh_goa_rag.guardrails.types import GuardrailResponse
+from cody_voice.guardrails.types import GuardrailResponse
 
 
 class GraphState(TypedDict, total=False):

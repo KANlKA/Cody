@@ -20,7 +20,7 @@ from typing import Any, Literal
 
 from dotenv import load_dotenv
 
-from hh_goa_rag.stt.sarvam import (
+from cody_voice.stt.sarvam import (
     MAX_AUDIO_BYTES,
     MAX_AUDIO_DURATION_MS,
     AudioInfo,

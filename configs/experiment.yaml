@@ -1,5 +1,5 @@
 experiment:
-  name: hh-goa-msmarco-xi
+  name: cody-msmarco-xi
   seed: 20260818
 
 dataset:

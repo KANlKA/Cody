@@ -10,7 +10,7 @@ import faiss
 import numpy as np
 import psutil
 
-from hh_goa_rag.metrics import latency_percentiles
+from cody_voice.metrics import latency_percentiles
 
 
 def l2_normalize(embeddings: np.ndarray) -> np.ndarray:

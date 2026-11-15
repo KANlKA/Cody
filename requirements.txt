@@ -1,19 +1,2 @@
-# App, web server, experiment tools, and development utilities.
-chromadb>=1.0
-einops>=0.8
-faiss-cpu>=1.10
-fastapi>=0.115,<1
-gnani-vachana>=0.8.1,<0.9
-huggingface-hub>=0.30
-numpy>=2.0
-pandas>=2.2
-pyarrow>=18.0
-python-dotenv>=1.2
-pytest>=8.3
-ruff>=0.11
-sentence-transformers>=4.0
-torch>=2.6
-transformers>=4.51
-uvicorn[standard]>=0.34,<1
-
-# Alternative BGE-M3 backend: install FlagEmbedding separately if needed.
+# Cody app, Gradio Space, experiments, and development tools.
+-e .[app,web,experiment,dev,space]

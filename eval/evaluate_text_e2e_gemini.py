@@ -11,15 +11,15 @@ import time
 from pathlib import Path
 from typing import Any
 
-from hh_goa_rag.generation.evaluation import percentile_summary
-from hh_goa_rag.generation.gemini import (
+from cody_voice.generation.evaluation import percentile_summary
+from cody_voice.generation.gemini import (
     GeminiGeneration,
     GeminiGenerationConfig,
 )
-from hh_goa_rag.harness import WARMUP_PASSAGE, WARMUP_QUERY, VoiceRAGHarness
-from hh_goa_rag.io import read_jsonl
-from hh_goa_rag.models import MODEL_SPECS, EmbeddingModel
-from hh_goa_rag.retriever import ParentFaissRetriever
+from cody_voice.harness import WARMUP_PASSAGE, WARMUP_QUERY, VoiceRAGHarness
+from cody_voice.io import read_jsonl
+from cody_voice.models import MODEL_SPECS, EmbeddingModel
+from cody_voice.retriever import ParentFaissRetriever
 
 EXPECTED_ROUTE = {
     "answer": "ANSWER",

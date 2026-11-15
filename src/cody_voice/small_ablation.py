@@ -15,19 +15,19 @@ import faiss
 import numpy as np
 import torch
 
-from hh_goa_rag.chunking import chunk_corpus
-from hh_goa_rag.config import stable_fingerprint
-from hh_goa_rag.embedding_ablation import resolve_data_dir
-from hh_goa_rag.index_backends import run_chroma_local, run_faiss, run_qdrant_local
-from hh_goa_rag.io import read_jsonl, write_json
-from hh_goa_rag.metrics import (
+from cody_voice.chunking import chunk_corpus
+from cody_voice.config import stable_fingerprint
+from cody_voice.embedding_ablation import resolve_data_dir
+from cody_voice.index_backends import run_chroma_local, run_faiss, run_qdrant_local
+from cody_voice.io import read_jsonl, write_json
+from cody_voice.metrics import (
     evaluate_rankings,
     evaluate_rankings_by_language,
     qrels_by_query,
 )
-from hh_goa_rag.models import MODEL_SPECS, EmbeddingModel, acquire_model, safe_model_name
-from hh_goa_rag.reporting import markdown_table, write_csv
-from hh_goa_rag.retrieval import build_flat_ip
+from cody_voice.models import MODEL_SPECS, EmbeddingModel, acquire_model, safe_model_name
+from cody_voice.reporting import markdown_table, write_csv
+from cody_voice.retrieval import build_flat_ip
 
 OUTPUT_ROOT = Path("results")
 
@@ -53,7 +53,7 @@ def _prepare_chunks(data_dir: Path, split: str, strategy: dict[str, Any]) -> Pat
     if not path.exists():
         corpus = list(read_jsonl(data_dir / f"{split}_corpus.jsonl"))
         path.parent.mkdir(parents=True, exist_ok=True)
-        from hh_goa_rag.io import write_jsonl
+        from cody_voice.io import write_jsonl
 
         write_jsonl(path, chunk_corpus(corpus, strategy))
     return path
@@ -172,7 +172,7 @@ def _embedding_rows(
             / f"embedding-{safe_model_name(model)}.faiss"
         )
         index, index_stats = build_flat_ip(encoded["corpus_vectors"], index_path)
-        from hh_goa_rag.retrieval import search_parent_rankings
+        from cody_voice.retrieval import search_parent_rankings
 
         rankings, retrieval_latency = search_parent_rankings(
             index,

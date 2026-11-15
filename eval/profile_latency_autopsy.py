@@ -19,10 +19,10 @@ import httpx
 from dotenv import load_dotenv
 from sarvamai import AsyncSarvamAI
 
-from hh_goa_rag.guardrails.retrieval import evidence_sufficiency
-from hh_goa_rag.harness import VoiceRAGHarness
-from hh_goa_rag.latency import latency_summary
-from hh_goa_rag.stt.sarvam import _wav_chunks
+from cody_voice.guardrails.retrieval import evidence_sufficiency
+from cody_voice.harness import VoiceRAGHarness
+from cody_voice.latency import latency_summary
+from cody_voice.stt.sarvam import _wav_chunks
 
 AUTOPSY_CSV = Path("results/latency_autopsy.csv")
 STT_CSV = Path("results/stt_latency_ablation.csv")

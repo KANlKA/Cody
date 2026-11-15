@@ -24,12 +24,12 @@ from fastapi import FastAPI, Form, Header, HTTPException, Request, Response, Upl
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
-from hh_goa_rag.harness import VoiceRAGHarness
-from hh_goa_rag.stt.providers import resolve_stt_provider
+from cody_voice.harness import VoiceRAGHarness
+from cody_voice.stt.providers import resolve_stt_provider
 
 LOGGER = logging.getLogger(__name__)
 
-APP_TITLE = "Anvaya Voice-RAG"
+APP_TITLE = "Cody Voice-RAG"
 MAX_AUDIO_BYTES = 2 * 1024 * 1024
 MAX_AUDIO_SECONDS = 30.0
 MAX_TEXT_CHARS = 2_000
@@ -184,7 +184,7 @@ def _default_harness_factory(settings: AppSettings) -> VoiceRAGHarness:
 
 
 def _default_tts_factory(settings: AppSettings) -> Any | None:
-    from hh_goa_rag.tts import build_tts_from_env
+    from cody_voice.tts import build_tts_from_env
 
     return build_tts_from_env(settings.env_file)
 
@@ -249,7 +249,7 @@ def create_app(
 
     app = FastAPI(
         title=APP_TITLE,
-        description="Live demo for the frozen HH Goa Voice-RAG pipeline.",
+        description="Live demo for the frozen Cody Voice-RAG pipeline.",
         version="1.0.0",
         docs_url=None,
         redoc_url=None,
@@ -521,7 +521,7 @@ def _validated_language_code(value: object) -> str:
 
 async def _save_upload(upload: UploadFile) -> Path:
     suffix = ".wav"
-    descriptor, raw_path = tempfile.mkstemp(prefix="hh-goa-audio-", suffix=suffix)
+    descriptor, raw_path = tempfile.mkstemp(prefix="cody-audio-", suffix=suffix)
     os.close(descriptor)
     path = Path(raw_path)
     total = 0
@@ -577,7 +577,7 @@ app = create_app()
 
 def main() -> None:
     uvicorn.run(
-        "hh_goa_rag.web:app",
+        "cody_voice.web:app",
         host=os.getenv("HH_RAG_BIND_HOST", "127.0.0.1"),
         port=int(os.getenv("HH_RAG_PORT", "8000")),
         workers=1,

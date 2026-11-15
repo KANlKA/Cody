@@ -8,9 +8,9 @@ import statistics
 from pathlib import Path
 from typing import Any
 
-from hh_goa_rag.generation.local import ExtractiveQAEngine, TinyGeneratorEngine
-from hh_goa_rag.generation.sarvam import GenerationContext
-from hh_goa_rag.io import read_jsonl, write_json
+from cody_voice.generation.local import ExtractiveQAEngine, TinyGeneratorEngine
+from cody_voice.generation.sarvam import GenerationContext
+from cody_voice.io import read_jsonl, write_json
 
 DEFAULT_EXTRACTIVE_MODEL = "deepset/xlm-roberta-base-squad2-distilled"
 DEFAULT_GENERATORS = ("Qwen/Qwen2.5-0.5B-Instruct", "Qwen/Qwen3-0.6B")

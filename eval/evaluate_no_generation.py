@@ -10,12 +10,12 @@ import time
 from pathlib import Path
 from typing import Any
 
-from hh_goa_rag.generation.evaluation import percentile_summary
-from hh_goa_rag.guardrails.input import route_input, validate_transcript
-from hh_goa_rag.guardrails.retrieval import evidence_sufficiency
-from hh_goa_rag.io import read_jsonl
-from hh_goa_rag.models import MODEL_SPECS, EmbeddingModel
-from hh_goa_rag.retriever import ParentFaissRetriever
+from cody_voice.generation.evaluation import percentile_summary
+from cody_voice.guardrails.input import route_input, validate_transcript
+from cody_voice.guardrails.retrieval import evidence_sufficiency
+from cody_voice.io import read_jsonl
+from cody_voice.models import MODEL_SPECS, EmbeddingModel
+from cody_voice.retriever import ParentFaissRetriever
 
 ATOMIC_STAGES = (
     "stt",

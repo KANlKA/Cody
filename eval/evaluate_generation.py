@@ -8,7 +8,7 @@ import shutil
 from datetime import UTC, datetime
 from pathlib import Path
 
-from hh_goa_rag.generation.evaluation import (
+from cody_voice.generation.evaluation import (
     aggregate_configuration_rows,
     aggregate_model_rows,
     prepare_context_cache,

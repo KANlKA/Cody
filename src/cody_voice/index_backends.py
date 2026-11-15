@@ -13,8 +13,8 @@ import faiss
 import numpy as np
 import psutil
 
-from hh_goa_rag.metrics import latency_percentiles
-from hh_goa_rag.retrieval import search_parent_rankings
+from cody_voice.metrics import latency_percentiles
+from cody_voice.retrieval import search_parent_rankings
 
 
 @dataclass
@@ -144,7 +144,7 @@ def run_qdrant_local(
 
     path = Path(path)
     path.mkdir(parents=True, exist_ok=True)
-    collection_name = "hh_goa_chunks"
+    collection_name = "cody_voice_chunks"
     client = QdrantClient(path=str(path))
     if client.collection_exists(collection_name):
         client.delete_collection(collection_name)
@@ -228,7 +228,7 @@ def run_chroma_local(
     client = chromadb.PersistentClient(
         path=str(path), settings=Settings(anonymized_telemetry=False)
     )
-    collection_name = "hh_goa_chunks"
+    collection_name = "cody_voice_chunks"
     with suppress(chromadb.errors.NotFoundError):
         client.delete_collection(collection_name)
     rss_before = _rss()

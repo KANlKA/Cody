@@ -19,7 +19,7 @@ from typing import Any
 
 from dotenv import load_dotenv
 
-from hh_goa_rag.stt.sarvam import SarvamSTT, STTResult
+from cody_voice.stt.sarvam import SarvamSTT, STTResult
 
 LOGGER = logging.getLogger(__name__)
 
@@ -90,7 +90,7 @@ def build_stt_from_env(env_path: str | Path = ".env") -> Any:
         if os.getenv(STT_PROVIDER_ENV, DEFAULT_STT_PROVIDER).strip().lower() == "gnani":
             LOGGER.warning("GNANI_API_KEY is not set; serving speech-to-text with Sarvam")
         return SarvamSTT.from_env(env_path)
-    from hh_goa_rag.stt.gnani import GnaniSTT
+    from cody_voice.stt.gnani import GnaniSTT
 
     gnani = GnaniSTT.from_env(env_path)
     if provider == "gnani+sarvam":

@@ -9,9 +9,9 @@ import time
 from pathlib import Path
 from typing import Any
 
-from hh_goa_rag.config import stable_fingerprint
-from hh_goa_rag.generation.evaluation import percentile_summary, write_csv
-from hh_goa_rag.guardrails import (
+from cody_voice.config import stable_fingerprint
+from cody_voice.generation.evaluation import percentile_summary, write_csv
+from cody_voice.guardrails import (
     ReasonCode,
     Route,
     evidence_sufficiency,
@@ -19,13 +19,13 @@ from hh_goa_rag.guardrails import (
     validate_generation,
     validate_transcript,
 )
-from hh_goa_rag.guardrails.retrieval import (
+from cody_voice.guardrails.retrieval import (
     CONSISTENCY_RESCUE_FLOOR,
     TOP_SCORE_THRESHOLD,
     TOP_TO_FIFTH_MIN_SPREAD,
     TOP_TWO_MAX_GAP,
 )
-from hh_goa_rag.io import read_jsonl, write_jsonl
+from cody_voice.io import read_jsonl, write_jsonl
 
 THRESHOLDS = (0.60, 0.62, 0.64, 0.65, 0.67, 0.70, 0.72, 0.74)
 DATASET_ROUTE = {
@@ -118,8 +118,8 @@ def _load_or_build_retrieval(
         ):
             return {row["case_id"]: row for row in rows}
 
-    from hh_goa_rag.models import MODEL_SPECS, EmbeddingModel
-    from hh_goa_rag.retriever import ParentFaissRetriever
+    from cody_voice.models import MODEL_SPECS, EmbeddingModel
+    from cody_voice.retriever import ParentFaissRetriever
 
     model = EmbeddingModel(
         MODEL_SPECS["BAAI/bge-m3"],
@@ -423,9 +423,9 @@ conservative refusal. Qrel presence is reported for evaluation only and is not a
 8. Malformed output, invalid refusal shape, missing/unknown citations, provider errors, or component
    exceptions fail closed to `SYSTEM_ERROR`.
 
-Rules live in `src/hh_goa_rag/guardrails/input.py`, retrieval thresholds in
-`src/hh_goa_rag/guardrails/retrieval.py`, grounding validation in
-`src/hh_goa_rag/guardrails/grounding.py`, and orchestration in `src/hh_goa_rag/harness.py`.
+Rules live in `src/cody_voice/guardrails/input.py`, retrieval thresholds in
+`src/cody_voice/guardrails/retrieval.py`, grounding validation in
+`src/cody_voice/guardrails/grounding.py`, and orchestration in `src/cody_voice/harness.py`.
 
 ## Confusion matrix
 

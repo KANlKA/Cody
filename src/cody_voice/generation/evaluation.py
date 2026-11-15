@@ -13,9 +13,9 @@ from collections.abc import Sequence
 from pathlib import Path
 from typing import Any
 
-from hh_goa_rag.io import read_jsonl, write_json, write_jsonl
-from hh_goa_rag.models import MODEL_SPECS, EmbeddingModel
-from hh_goa_rag.retriever import ParentFaissRetriever
+from cody_voice.io import read_jsonl, write_json, write_jsonl
+from cody_voice.models import MODEL_SPECS, EmbeddingModel
+from cody_voice.retriever import ParentFaissRetriever
 
 from .prompts import PROMPT_VERSION
 from .sarvam import (

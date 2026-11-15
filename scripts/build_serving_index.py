@@ -9,10 +9,10 @@ import faiss
 import numpy as np
 import torch
 
-from hh_goa_rag.chunking import chunk_corpus
-from hh_goa_rag.harness import FROZEN_RETRIEVAL, FROZEN_TOP_K
-from hh_goa_rag.io import read_jsonl, write_json, write_jsonl
-from hh_goa_rag.models import MODEL_SPECS, EmbeddingModel
+from cody_voice.chunking import chunk_corpus
+from cody_voice.harness import FROZEN_RETRIEVAL, FROZEN_TOP_K
+from cody_voice.io import read_jsonl, write_json, write_jsonl
+from cody_voice.models import MODEL_SPECS, EmbeddingModel
 
 ROOT = Path("data/processed/2c0dcd7c6bc9f61e")
 MODEL_CACHE = Path("cache/models/BAAI__bge-m3--5617a9f61b02")
@@ -58,7 +58,7 @@ def main() -> None:
     write_json(
         CONFIG_PATH,
         {
-            "class": "hh_goa_rag.retriever.ParentFaissRetriever",
+            "class": "cody_voice.retriever.ParentFaissRetriever",
             "model": FROZEN_RETRIEVAL["model"],
             "model_revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
             "model_cache_path": str(MODEL_CACHE),

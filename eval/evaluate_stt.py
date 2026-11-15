@@ -14,9 +14,9 @@ import os
 from pathlib import Path
 from typing import Any
 
-from hh_goa_rag.models import MODEL_SPECS, EmbeddingModel
-from hh_goa_rag.retriever import ParentFaissRetriever
-from hh_goa_rag.stt.sarvam import SARVAM_MODE, SARVAM_MODEL, SarvamSTT, STTResult
+from cody_voice.models import MODEL_SPECS, EmbeddingModel
+from cody_voice.retriever import ParentFaissRetriever
+from cody_voice.stt.sarvam import SARVAM_MODE, SARVAM_MODEL, SarvamSTT, STTResult
 
 try:
     from .metrics import (

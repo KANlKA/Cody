@@ -13,8 +13,8 @@ from typing import Any
 import pyarrow.parquet as pq
 from huggingface_hub import HfApi, hf_hub_download, snapshot_download
 
-from hh_goa_rag.config import stable_fingerprint
-from hh_goa_rag.io import write_json, write_jsonl
+from cody_voice.config import stable_fingerprint
+from cody_voice.io import write_json, write_jsonl
 
 LANGUAGE_PREFIXES: dict[str, str] = {
     "as": "asm",

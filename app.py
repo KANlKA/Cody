@@ -1,4 +1,4 @@
-"""Hugging Face Gradio Space entry point for the unchanged Anvaya UI."""
+"""Hugging Face Gradio Space entry point for the unchanged Cody UI."""
 
 from __future__ import annotations
 
@@ -94,9 +94,9 @@ def _prepare_model() -> Path:
         "revision": MODEL_REVISION,
         "additional_code": None,
         "python_file_sha256": python_hashes,
-        "owned_by": "hh-goa-retrieval-ablation-space",
+        "owned_by": "cody-retrieval-ablation-space",
     }
-    (model_path / ".hh_goa_model.json").write_text(
+    (model_path / ".cody_model.json").write_text(
         json.dumps(manifest, indent=2), encoding="utf-8"
     )
     return model_path
@@ -148,12 +148,12 @@ def _prepare_extractive_model() -> Path:
 
 
 def _body_markup() -> str:
-    source = (ROOT / "src" / "hh_goa_rag" / "static" / "index.html").read_text(
+    source = (ROOT / "src" / "cody_voice" / "static" / "index.html").read_text(
         encoding="utf-8"
     )
     body = re.search(r"<body[^>]*>(?P<body>.*)</body>", source, flags=re.DOTALL | re.IGNORECASE)
     if body is None:
-        raise RuntimeError("The existing Anvaya HTML shell has no body")
+        raise RuntimeError("The existing Cody HTML shell has no body")
     return re.sub(
         r"\s*<script[^>]+src=[\"']/static/app\.js[\"'][^>]*></script>",
         "",
@@ -169,8 +169,8 @@ def _space_bootstrap() -> None:
 
 def _space_harness_factory(_settings):
     """Prepare Space-local artifacts and construct the CPU serving harness."""
-    from hh_goa_rag.harness import VoiceRAGHarness
-    from hh_goa_rag.web import AppSettings, validate_environment
+    from cody_voice.harness import VoiceRAGHarness
+    from cody_voice.web import AppSettings, validate_environment
 
     model_path = _prepare_model()
     config_path = _prepare_config(model_path)
@@ -196,12 +196,12 @@ def _build_space_app():
     import gradio as gr
     from fastapi.responses import RedirectResponse
 
-    from hh_goa_rag.web import create_app
+    from cody_voice.web import create_app
 
-    styles = (ROOT / "src" / "hh_goa_rag" / "static" / "styles.css").read_text(
+    styles = (ROOT / "src" / "cody_voice" / "static" / "styles.css").read_text(
         encoding="utf-8"
     )
-    script = (ROOT / "src" / "hh_goa_rag" / "static" / "app.js").read_text(
+    script = (ROOT / "src" / "cody_voice" / "static" / "app.js").read_text(
         encoding="utf-8"
     )
     gradio_reset = """
@@ -232,17 +232,17 @@ def _build_space_app():
         "  new MutationObserver(forceLightTheme).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });\n"
         "  new MutationObserver(forceLightTheme).observe(document.body, { attributes: true, attributeFilter: ['class'] });\n"
         "  let appStarted = false;\n"
-        "  const startAnvaya = () => {\n"
+        "  const startCody = () => {\n"
         "    if (appStarted) return;\n"
-        "    if (!document.querySelector('#record-button')) { window.setTimeout(startAnvaya, 50); return; }\n"
+        "    if (!document.querySelector('#record-button')) { window.setTimeout(startCody, 50); return; }\n"
         "    appStarted = true;\n"
         + "    " + script.replace("\n", "\n    ")
         + "\n  };\n"
-        "  startAnvaya();\n"
+        "  startCody();\n"
         "\n}"
     )
     with gr.Blocks(
-        title="Anvaya | Grounded Voice Intelligence",
+        title="Cody | Grounded Voice Intelligence",
         theme=gr.themes.Base(),
     ) as demo:
         gr.HTML(_body_markup())

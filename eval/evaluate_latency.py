@@ -15,13 +15,13 @@ from typing import Any
 import httpx
 from dotenv import load_dotenv
 
-from hh_goa_rag.generation.prompts import build_messages
-from hh_goa_rag.generation.sarvam import (
+from cody_voice.generation.prompts import build_messages
+from cody_voice.generation.sarvam import (
     _ANSWER_SCHEMA,
     SARVAM_CHAT_ENDPOINT,
     _parse_answer,
 )
-from hh_goa_rag.latency import (
+from cody_voice.latency import (
     compress_contexts,
     extractive_is_grounded,
     latency_summary,

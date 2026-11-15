@@ -9,10 +9,10 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
-from hh_goa_rag.generation.evaluation import percentile_summary, write_csv
-from hh_goa_rag.harness import VoiceRAGHarness
-from hh_goa_rag.io import read_jsonl
-from hh_goa_rag.stt.sarvam import SarvamSTT
+from cody_voice.generation.evaluation import percentile_summary, write_csv
+from cody_voice.harness import VoiceRAGHarness
+from cody_voice.io import read_jsonl
+from cody_voice.stt.sarvam import SarvamSTT
 
 try:
     from .metrics import word_error_counts

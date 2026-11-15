@@ -7,10 +7,10 @@ import shutil
 from pathlib import Path
 from typing import Any
 
-from hh_goa_rag.index_backends import directory_size
+from cody_voice.index_backends import directory_size
 
-OWNER = "hh-goa-retrieval-ablation"
-MARKER = ".hh_goa_model.json"
+OWNER = "cody-retrieval-ablation"
+MARKER = ".cody_model.json"
 
 
 def cleanup_losing_models(

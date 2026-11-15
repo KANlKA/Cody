@@ -9,18 +9,18 @@ from typing import Any
 import numpy as np
 import torch
 
-from hh_goa_rag.chunking import chunk_corpus, split_sentences
-from hh_goa_rag.config import stable_fingerprint
-from hh_goa_rag.embedding_ablation import resolve_data_dir
-from hh_goa_rag.io import read_jsonl, write_json, write_jsonl
-from hh_goa_rag.metrics import (
+from cody_voice.chunking import chunk_corpus, split_sentences
+from cody_voice.config import stable_fingerprint
+from cody_voice.embedding_ablation import resolve_data_dir
+from cody_voice.io import read_jsonl, write_json, write_jsonl
+from cody_voice.metrics import (
     evaluate_rankings,
     evaluate_rankings_by_language,
     qrels_by_query,
 )
-from hh_goa_rag.models import MODEL_SPECS, EmbeddingModel, acquire_model
-from hh_goa_rag.reporting import markdown_table, write_csv
-from hh_goa_rag.retrieval import build_flat_ip, search_parent_rankings
+from cody_voice.models import MODEL_SPECS, EmbeddingModel, acquire_model
+from cody_voice.reporting import markdown_table, write_csv
+from cody_voice.retrieval import build_flat_ip, search_parent_rankings
 
 
 def _load_embedding_winner(path: str | Path = "results/embedding_winner.json") -> dict[str, Any]:

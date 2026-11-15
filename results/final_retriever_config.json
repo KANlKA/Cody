@@ -5,7 +5,7 @@
     "name": "fixed_words",
     "strategy": "fixed_words"
   },
-  "class": "hh_goa_rag.retriever.ParentFaissRetriever",
+  "class": "cody_voice.retriever.ParentFaissRetriever",
   "corpus_chunks": 20402,
   "corpus_embedding_ms": 20344.4309,
   "hybrid_reranker": {
@@ -25,7 +25,7 @@
   "index_artifact": "space_artifacts/faiss_hnsw.faiss",
   "language_partitioned": true,
   "model": "BAAI/bge-m3",
-  "model_cache_path": "cache\\models\\BAAI__bge-m3--5617a9f61b02",
+  "model_cache_path": "cache/models/BAAI__bge-m3--5617a9f61b02",
   "model_revision": "5617a9f61b028005a4858fdac845db406aefb181",
   "normalization_method": "float32_l2_v1",
   "search_oversample": 20,

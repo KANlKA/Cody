@@ -20,8 +20,8 @@ from torch.nn import functional as torch_functional
 from tqdm.auto import tqdm
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from hh_goa_rag.io import write_json
-from hh_goa_rag.metrics import latency_percentiles
+from cody_voice.io import write_json
+from cody_voice.metrics import latency_percentiles
 
 
 @dataclass(frozen=True)
@@ -140,13 +140,13 @@ def acquire_model(repository: str, model_root: str | Path) -> tuple[Path, str]:
         if path.is_file()
     }
     write_json(
-        target / ".hh_goa_model.json",
+        target / ".cody_model.json",
         {
             "repository": repository,
             "revision": revision,
             "additional_code": additional_code,
             "python_file_sha256": python_hashes,
-            "owned_by": "hh-goa-retrieval-ablation",
+            "owned_by": "cody-retrieval-ablation",
         },
     )
     return target, revision
@@ -338,7 +338,7 @@ def _sha256_file(path: Path) -> str:
 
 def _verify_model_artifact(path: Path, repository: str) -> None:
     """Verify the pinned acquisition manifest before executing local model code."""
-    manifest_path = path / ".hh_goa_model.json"
+    manifest_path = path / ".cody_model.json"
     if not manifest_path.is_file():
         raise RuntimeError(f"Model artifact manifest is missing: {manifest_path}")
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))

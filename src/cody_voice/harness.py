@@ -16,13 +16,13 @@ from dataclasses import replace
 from pathlib import Path
 from typing import Any, Protocol
 
-from hh_goa_rag.generation import (
+from cody_voice.generation import (
     QWEN_GGUF_MODEL,
     GenerationContext,
     QwenGGUFGeneration,
     QwenGGUFGenerationConfig,
 )
-from hh_goa_rag.guardrails import (
+from cody_voice.guardrails import (
     GuardrailResponse,
     ReasonCode,
     Route,
@@ -32,12 +32,12 @@ from hh_goa_rag.guardrails import (
     validate_generation,
     validate_transcript,
 )
-from hh_goa_rag.guardrails.types import STAGE_NAMES
-from hh_goa_rag.models import MODEL_SPECS, EmbeddingModel, safe_model_name
-from hh_goa_rag.retriever import ParentFaissRetriever
-from hh_goa_rag.stt.providers import build_stt_from_env
+from cody_voice.guardrails.types import STAGE_NAMES
+from cody_voice.models import MODEL_SPECS, EmbeddingModel, safe_model_name
+from cody_voice.retriever import ParentFaissRetriever
+from cody_voice.stt.providers import build_stt_from_env
 
-LOGGER = logging.getLogger("hh_goa_rag.harness")
+LOGGER = logging.getLogger("cody_voice.harness")
 
 FROZEN_GENERATION_MODEL = QWEN_GGUF_MODEL
 FROZEN_TOP_K = 10
@@ -222,7 +222,7 @@ class VoiceRAGHarness:
         self.fast_tier_min_budget_ms = fast_tier_min_budget_ms
         self._graph = None
         if orchestrator == "langgraph":
-            from hh_goa_rag.orchestration import build_langgraph
+            from cody_voice.orchestration import build_langgraph
 
             self._graph = build_langgraph(self._handle_transcript)
 
@@ -265,11 +265,11 @@ class VoiceRAGHarness:
             # multi-hundred-MB load, its boot warm-up, and API clients.
             generator = None
         elif generator_name == "sarvam":
-            from hh_goa_rag.generation import SarvamGeneration
+            from cody_voice.generation import SarvamGeneration
 
             generator = SarvamGeneration.from_env(env_path)
         elif generator_name == "qwen_gguf":
-            from hh_goa_rag.generation import resolve_gguf_model
+            from cody_voice.generation import resolve_gguf_model
 
             generator = QwenGGUFGeneration.from_env(
                 config=QwenGGUFGenerationConfig(
@@ -280,7 +280,7 @@ class VoiceRAGHarness:
         elif generator_name in {"resilient", "fallback", "auto"}:
             # Local GGUF first; identical structured request retried against
             # an API generator only when the local runtime is unavailable.
-            from hh_goa_rag.generation import FallbackGeneration, resolve_gguf_model
+            from cody_voice.generation import FallbackGeneration, resolve_gguf_model
 
             resolved_generator = FallbackGeneration.from_env(
                 config=QwenGGUFGenerationConfig(
@@ -1209,7 +1209,7 @@ def _build_fast_tier(device: str) -> FastTier | None:
     )
     threshold = os.getenv("HH_RAG_FAST_TIER_THRESHOLD", str(FROZEN_FAST_TIER_THRESHOLD))
     try:
-        from hh_goa_rag.generation.local import ExtractiveQAEngine
+        from cody_voice.generation.local import ExtractiveQAEngine
 
         resolved = _resolve_fast_tier_path(model)
         try:
@@ -1219,7 +1219,7 @@ def _build_fast_tier(device: str) -> FastTier | None:
                 confidence_threshold=float(threshold),
             )
         except Exception:
-            from hh_goa_rag.models import acquire_model
+            from cody_voice.models import acquire_model
 
             root = Path(os.getenv("HH_RAG_MODEL_ROOT", "cache/models"))
             acquire_model(model, root)

@@ -9,13 +9,13 @@ from pathlib import Path
 from rich.console import Console
 from rich.table import Table
 
-from hh_goa_rag.chunking_ablation import run_chunking_ablation
-from hh_goa_rag.config import load_config
-from hh_goa_rag.dataset import download_full_dataset, prepare_dataset, read_manifest
-from hh_goa_rag.embedding_ablation import run_embedding_ablation
-from hh_goa_rag.finalization import run_finalization
-from hh_goa_rag.index_ablation import run_index_ablation
-from hh_goa_rag.small_ablation import run_small_ablation
+from cody_voice.chunking_ablation import run_chunking_ablation
+from cody_voice.config import load_config
+from cody_voice.dataset import download_full_dataset, prepare_dataset, read_manifest
+from cody_voice.embedding_ablation import run_embedding_ablation
+from cody_voice.finalization import run_finalization
+from cody_voice.index_ablation import run_index_ablation
+from cody_voice.small_ablation import run_small_ablation
 
 
 def _dataset_prepare(args: argparse.Namespace) -> int:

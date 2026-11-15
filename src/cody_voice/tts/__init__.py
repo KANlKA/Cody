@@ -14,7 +14,7 @@ from typing import Any
 
 from dotenv import load_dotenv
 
-from hh_goa_rag.tts.gnani import GnaniTTS, GnaniTTSConfig, TTSResult
+from cody_voice.tts.gnani import GnaniTTS, GnaniTTSConfig, TTSResult
 
 LOGGER = logging.getLogger(__name__)
 

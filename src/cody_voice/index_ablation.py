@@ -11,17 +11,17 @@ import chromadb
 import faiss
 import numpy as np
 
-from hh_goa_rag.config import stable_fingerprint
-from hh_goa_rag.embedding_ablation import resolve_data_dir
-from hh_goa_rag.index_backends import run_chroma_local, run_faiss, run_qdrant_local
-from hh_goa_rag.io import read_jsonl, write_json
-from hh_goa_rag.metrics import (
+from cody_voice.config import stable_fingerprint
+from cody_voice.embedding_ablation import resolve_data_dir
+from cody_voice.index_backends import run_chroma_local, run_faiss, run_qdrant_local
+from cody_voice.io import read_jsonl, write_json
+from cody_voice.metrics import (
     evaluate_rankings,
     evaluate_rankings_by_language,
     qrels_by_query,
 )
-from hh_goa_rag.reporting import markdown_table, write_csv
-from hh_goa_rag.retrieval import l2_normalize
+from cody_voice.reporting import markdown_table, write_csv
+from cody_voice.retrieval import l2_normalize
 
 
 def _load_winner(path: str | Path) -> dict[str, Any]:

@@ -1,5 +1,5 @@
 
-"""Grounded answer-generation services for the frozen HH Goa retriever."""
+"""Grounded answer-generation services for the frozen Cody retriever."""
 
 from .fallback import FallbackGeneration
 from .gemini import GEMINI_MODEL, GeminiGeneration, GeminiGenerationConfig

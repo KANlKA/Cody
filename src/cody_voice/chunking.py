@@ -8,7 +8,7 @@ from typing import Any
 
 import numpy as np
 
-from hh_goa_rag.config import stable_fingerprint
+from cody_voice.config import stable_fingerprint
 
 WORD_PATTERN = re.compile(r"\S+", re.UNICODE)
 SENTENCE_BOUNDARY = re.compile(r"(?<=[.!?।॥])\s+", re.UNICODE)

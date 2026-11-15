@@ -3,9 +3,9 @@ requires = ["hatchling>=1.27"]
 build-backend = "hatchling.build"
 
 [project]
-name = "hh-goa-retrieval-ablation"
+name = "cody-voice-intelligence"
 version = "0.1.0"
-description = "Leakage-safe retrieval ablations for the HH Goa Voice-RAG project"
+description = "Grounded multilingual voice and text assistant"
 readme = "README.md"
 requires-python = ">=3.11,<3.15"
 dependencies = [
@@ -58,6 +58,10 @@ web = [
   "python-multipart>=0.0.20,<1",
   "uvicorn[standard]>=0.34,<1",
 ]
+space = [
+  "gradio==6.25.0",
+  "spaces>=0.42,<1",
+]
 orchestration = [
   "langgraph>=0.6,<2",
 ]
@@ -67,11 +71,11 @@ dev = [
 ]
 
 [project.scripts]
-hh-goa-ablate = "hh_goa_rag.cli:main"
-hh-goa-demo = "hh_goa_rag.web:main"
+cody-ablate = "cody_voice.cli:main"
+cody-demo = "cody_voice.web:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/hh_goa_rag"]
+packages = ["src/cody_voice"]
 
 [tool.pytest.ini_options]
 addopts = "-q"

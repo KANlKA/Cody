@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from hh_goa_rag.latency import latency_summary
+from cody_voice.latency import latency_summary
 
 RESULTS = Path("results")
 RAW = Path("cache/latency")

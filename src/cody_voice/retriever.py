@@ -10,8 +10,8 @@ from pathlib import Path
 import faiss
 import numpy as np
 
-from hh_goa_rag.io import read_jsonl
-from hh_goa_rag.retrieval import l2_normalize
+from cody_voice.io import read_jsonl
+from cody_voice.retrieval import l2_normalize
 
 
 @dataclass(frozen=True)

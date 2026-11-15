@@ -5,7 +5,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from hh_goa_rag.generation.review import review_judgments
+from cody_voice.generation.review import review_judgments
 
 
 def main() -> None:

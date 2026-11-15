@@ -1,5 +1,5 @@
 experiment:
-  name: hh-goa-small-embedding-index-ablation
+  name: cody-small-embedding-index-ablation
   seed: 20260818
 
 dataset:

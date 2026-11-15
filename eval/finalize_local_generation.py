@@ -12,7 +12,7 @@ from typing import Any
 
 import numpy as np
 
-from hh_goa_rag.generation.local import extractive_span_integrity, select_route_tier
+from cody_voice.generation.local import extractive_span_integrity, select_route_tier
 
 OBSERVATIONS = Path("cache/local_generation/final_observations.json")
 JUDGMENTS = Path("eval/local_quality_judgments.csv")

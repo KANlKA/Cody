@@ -7,7 +7,7 @@ from collections.abc import Sequence
 from pathlib import Path
 from typing import Any
 
-from hh_goa_rag.io import write_json
+from cody_voice.io import write_json
 
 
 def write_csv(path: str | Path, rows: list[dict[str, Any]]) -> None:

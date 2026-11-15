@@ -1,7 +1,7 @@
 services:
-  anvaya:
+  cody:
     build: .
-    image: anvaya-voice-rag:phase7
+    image: cody-voice-rag
     ports:
       - "127.0.0.1:8000:8000"
     env_file:

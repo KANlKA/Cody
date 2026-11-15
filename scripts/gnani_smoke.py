@@ -19,8 +19,8 @@ from dotenv import load_dotenv
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from hh_goa_rag.stt.gnani import GnaniSTT  # noqa: E402
-from hh_goa_rag.tts.gnani import GnaniTTS, GnaniTTSConfig  # noqa: E402
+from cody_voice.stt.gnani import GnaniSTT  # noqa: E402
+from cody_voice.tts.gnani import GnaniTTS, GnaniTTSConfig  # noqa: E402
 
 SAMPLE_TEXT = {
     "en-IN": "Goa is famous for its beaches and its spice plantations.",
